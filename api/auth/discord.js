@@ -1,4 +1,4 @@
-export default function handler(req, res) {
+module.exports = function handler(req, res) {
   const clientId = process.env.DISCORD_CLIENT_ID;
 
   const redirectUri =
@@ -15,5 +15,9 @@ export default function handler(req, res) {
     "&redirect_uri=" + encodeURIComponent(redirectUri) +
     "&scope=" + encodeURIComponent("identify");
 
-  res.redirect(302, discordUrl);
-}
+  res.writeHead(302, {
+    Location: discordUrl
+  });
+
+  res.end();
+};

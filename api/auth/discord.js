@@ -1,24 +1,19 @@
 export default function handler(req, res) {
   const clientId = process.env.DISCORD_CLIENT_ID;
-  const redirectUri = process.env.DISCORD_REDIRECT_URI;
 
-  if (!clientId || !redirectUri) {
-    return res.status(500).send("Variables Discord manquantes.");
+  const redirectUri =
+    "https://p-le-illegal.vercel.app/api/auth/discord/callback";
+
+  if (!clientId) {
+    return res.status(500).send("DISCORD_CLIENT_ID manquant.");
   }
 
-  const params = new URLSearchParams();
-
-  params.set("client_id", clientId);
-  params.set("redirect_uri", redirectUri);
-  params.set("response_type", "code");
-  params.set("scope", "identify");
-
   const discordUrl =
-    "https://discord.com/oauth2/authorize?" + params.toString();
+    "https://discord.com/oauth2/authorize" +
+    "?client_id=" + encodeURIComponent(clientId) +
+    "&response_type=code" +
+    "&redirect_uri=" + encodeURIComponent(redirectUri) +
+    "&scope=" + encodeURIComponent("identify");
 
-  res.writeHead(302, {
-    Location: discordUrl
-  });
-
-  res.end();
+  res.redirect(302, discordUrl);
 }

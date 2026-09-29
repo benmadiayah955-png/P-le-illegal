@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Évaluations — Pôle Illégal</title>
+
+<style>
+
+:root {
+    --fond: #05070D;
+    --bleu: #1597FF;
+    --cyan: #65E6FF;
+    --rose: #E978FF;
+    --mauve: #B99CFF;
+    --blanc: #F5F7FF;
+    --gris: #9AA4B5;
+    --card: #0B101B;
+    --border: rgba(101, 230, 255, 0.18);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(21,151,255,0.10), transparent 35%),
+        radial-gradient(circle at top right, rgba(233,120,255,0.08), transparent 35%),
+        var(--fond);
+    color: var(--blanc);
+    min-height: 100vh;
+}
+
+/* HEADER */
+
+header {
+    padding: 25px 7%;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    background: rgba(5,7,13,0.85);
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--cyan);
+    letter-spacing: 1px;
+}
+
+.back {
+    color: var(--blanc);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    padding: 10px 16px;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+.back:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+}
+
+/* MAIN */
+
+main {
+    width: 86%;
+    max-width: 1200px;
+    margin: 55px auto;
+}
+
+.badge {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 20px;
+    background: rgba(233,120,255,0.10);
+    border: 1px solid rgba(233,120,255,0.35);
+    color: var(--rose);
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.intro {
+    color: var(--gris);
+    max-width: 750px;
+    line-height: 1.7;
+    margin-bottom: 35px;
+}
+
+/* SEARCH */
+
+.search-box {
+    margin-bottom: 30px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 16px 18px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    outline: none;
+    background: var(--card);
+    color: var(--blanc);
+    font-size: 15px;
+}
+
+.search-box input:focus {
+    border-color: var(--cyan);
+    box-shadow: 0 0 15px rgba(101,230,255,0.08);
+}
+
+/* CARDS */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: linear-gradient(
+        145deg,
+        rgba(11,16,27,0.98),
+        rgba(8,12,21,0.98)
+    );
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    transition: 0.25s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(101,230,255,0.45);
+    box-shadow: 0 0 25px rgba(21,151,255,0.08);
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.card h2 {
+    font-size: 19px;
+}
+
+.status {
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.normal {
+    color: var(--cyan);
+    background: rgba(101,230,255,0.08);
+    border: 1px solid rgba(101,230

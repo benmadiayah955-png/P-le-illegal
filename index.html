@@ -7,79 +7,544 @@
     <title>Pôle Illégal</title>
 
     <style>
-        body {
+        * {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: #0b0b0f;
-            color: white;
-            text-align: center;
+            padding: 0;
+            box-sizing: border-box;
         }
 
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            color: #f5f7ff;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(21,151,255,0.18), transparent 30%),
+                radial-gradient(circle at 80% 30%, rgba(233,120,255,0.16), transparent 30%),
+                #05070d;
+            overflow-x: hidden;
+        }
+
+        /* EFFET LUMIÈRE */
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 350px;
+            height: 350px;
+            background: #1597ff;
+            filter: blur(180px);
+            opacity: 0.12;
+            top: 20%;
+            left: -150px;
+            z-index: -1;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 350px;
+            height: 350px;
+            background: #e978ff;
+            filter: blur(180px);
+            opacity: 0.10;
+            right: -150px;
+            bottom: 10%;
+            z-index: -1;
+        }
+
+        /* MENU */
+
         header {
-            padding: 60px 20px;
-            background: #15151d;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 20px;
+            background: rgba(5,7,13,0.82);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(101,230,255,0.12);
+        }
+
+        .navbar {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .brand-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #65e6ff, #1597ff, #e978ff);
+            box-shadow:
+                0 0 15px rgba(101,230,255,0.5),
+                0 0 30px rgba(233,120,255,0.2);
+        }
+
+        .brand span {
+            background: linear-gradient(90deg, #65e6ff, #1597ff, #e978ff);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .staff {
+            padding: 9px 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(101,230,255,0.25);
+            background: rgba(101,230,255,0.06);
+            color: #bcefff;
+            font-size: 13px;
+        }
+
+        /* CONTENU */
+
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 70px 20px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 30px 0 70px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 50px;
+            background: rgba(101,230,255,0.07);
+            border: 1px solid rgba(101,230,255,0.25);
+            color: #65e6ff;
+            font-size: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 0 20px rgba(101,230,255,0.08);
         }
 
         h1 {
-            font-size: 42px;
-            margin-bottom: 10px;
+            font-size: clamp(45px, 10vw, 82px);
+            line-height: 1;
+            letter-spacing: -3px;
+            margin-bottom: 20px;
         }
 
-        p {
-            color: #b8b8c2;
+        h1 span {
+            background: linear-gradient(
+                90deg,
+                #65e6ff,
+                #1597ff,
+                #b99cff,
+                #e978ff
+            );
+            -webkit-background-clip: text;
+            color: transparent;
         }
 
-        .menu {
+        .hero p {
+            max-width: 650px;
+            margin: auto;
+            color: #9298a8;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* BOUTONS */
+
+        .buttons {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
-            padding: 30px 15px;
+            gap: 12px;
+            margin-top: 30px;
         }
 
-        .bouton {
-            background: #8b1e3f;
-            color: white;
-            padding: 18px 25px;
-            border-radius: 12px;
+        .btn {
             text-decoration: none;
+            color: white;
+            padding: 13px 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.04);
+            transition: 0.25s;
+        }
+
+        .btn.primary {
+            background: linear-gradient(90deg, #1597ff, #8d70ff, #e978ff);
+            border: none;
+            box-shadow: 0 0 25px rgba(21,151,255,0.18);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* SECTIONS */
+
+        .section-title {
+            margin-bottom: 25px;
+        }
+
+        .section-title h2 {
+            font-size: 27px;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: #717887;
+            font-size: 14px;
+        }
+
+        /* CARTES */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .card {
+            position: relative;
+            padding: 25px;
+            border-radius: 18px;
+            background: rgba(12,15,24,0.78);
+            border: 1px solid rgba(255,255,255,0.07);
+            overflow: hidden;
+            transition: 0.25s;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: #1597ff;
+            filter: blur(80px);
+            opacity: 0.12;
+            top: -50px;
+            right: -40px;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(101,230,255,0.35);
+            box-shadow: 0 10px 35px rgba(21,151,255,0.08);
+        }
+
+        .icon {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 13px;
+            background: linear-gradient(
+                135deg,
+                rgba(101,230,255,0.13),
+                rgba(233,120,255,0.10)
+            );
+            border: 1px solid rgba(101,230,255,0.15);
+            margin-bottom: 18px;
+            font-size: 20px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            font-size: 19px;
+        }
+
+        .card p {
+            color: #858b9a;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .card a {
+            display: inline-block;
+            margin-top: 18px;
+            color: #65e6ff;
+            text-decoration: none;
+            font-size: 14px;
             font-weight: bold;
         }
 
-        .bouton:hover {
-            background: #b52a52;
+        /* STATISTIQUES */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 25px;
         }
 
+        .stat {
+            padding: 22px;
+            text-align: center;
+            border-radius: 15px;
+            background: rgba(12,15,24,0.75);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 28px;
+            background: linear-gradient(90deg, #65e6ff, #e978ff);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .stat span {
+            color: #717887;
+            font-size: 13px;
+        }
+
+        /* FOOTER */
+
         footer {
-            margin-top: 80px;
-            padding: 25px;
-            color: #777;
+            text-align: center;
+            padding: 45px 20px;
+            margin-top: 60px;
+            color: #505665;
+            font-size: 12px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        /* TELEPHONE */
+
+        @media (max-width: 650px) {
+
+            main {
+                padding: 50px 15px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 50px;
+            }
+
+            .hero {
+                padding-bottom: 50px;
+            }
+
+            .staff {
+                display: none;
+            }
+
+            .brand {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <header>
-        <h1>𝐏ÔLE ILLÉGAL</h1>
-        <p>Gestion des organisations et des activités illégales</p>
-    </header>
+<header>
 
-    <div class="menu">
+    <div class="navbar">
 
-        <a class="bouton" href="#">🏴 Organisations</a>
+        <div class="brand">
+            <div class="brand-icon"></div>
 
-        <a class="bouton" href="#">⚔️ Activités</a>
+            <div>
+                PÔLE <span>ILLÉGAL</span>
+            </div>
+        </div>
 
-        <a class="bouton" href="#">⚖️ Sanctions</a>
-
-        <a class="bouton" href="#">👮 Espace Staff</a>
+        <div class="staff">
+            🔒 Espace Staff
+        </div>
 
     </div>
 
-    <footer>
-        Pôle Illégal — Administration
-    </footer>
+</header>
+
+
+<main>
+
+    <section class="hero">
+
+        <div class="badge">
+            ✦ ADMINISTRATION RP
+        </div>
+
+        <h1>
+            Pôle <span>Illégal</span>
+        </h1>
+
+        <p>
+            Centralisation et gestion des organisations,
+            activités et procédures du pôle illégal
+            de votre serveur RP.
+        </p>
+
+        <div class="buttons">
+
+            <a href="organisations.html" class="btn primary">
+                🏢 Organisations
+            </a>
+
+            <a href="activites.html" class="btn">
+                ⚡ Activités
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <section>
+
+        <div class="section-title">
+
+            <h2>Gestion du pôle</h2>
+
+            <p>
+                Retrouvez les différents espaces d'administration.
+            </p>
+
+        </div>
+
+
+        <div class="cards">
+
+            <div class="card">
+
+                <div class="icon">🏢</div>
+
+                <h3>Organisations</h3>
+
+                <p>
+                    Consultez les organisations présentes
+                    sur le serveur et leur suivi administratif.
+                </p>
+
+                <a href="organisations.html">
+                    Accéder →
+                </a>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">📋</div>
+
+                <h3>Créer une organisation</h3>
+
+                <p>
+                    Accédez au formulaire de création
+                    et aux informations nécessaires.
+                </p>
+
+                <a href="creation.html">
+                    Créer →
+                </a>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">⚡</div>
+
+                <h3>Activités</h3>
+
+                <p>
+                    Retrouvez le suivi des différentes
+                    activités prévues par le règlement.
+                </p>
+
+                <a href="activites.html">
+                    Voir →
+                </a>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">⚖️</div>
+
+                <h3>Sanctions</h3>
+
+                <p>
+                    Consultez les procédures et le suivi
+                    administratif des sanctions.
+                </p>
+
+                <a href="sanctions.html">
+                    Consulter →
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section style="margin-top:70px;">
+
+        <div class="section-title">
+
+            <h2>Le pôle en quelques chiffres</h2>
+
+            <p>
+                Les statistiques pourront être actualisées par le staff.
+            </p>
+
+        </div>
+
+
+        <div class="stats">
+
+            <div class="stat">
+                <strong>0</strong>
+                <span>Organisations</span>
+            </div>
+
+            <div class="stat">
+                <strong>0</strong>
+                <span>Activités</span>
+            </div>
+
+            <div class="stat">
+                <strong>0</strong>
+                <span>Sanctions</span>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    Pôle Illégal — Administration RP
+    <br><br>
+    Interface réservée à la gestion du serveur.
+
+</footer>
+
 
 </body>
 </html>

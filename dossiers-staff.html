@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dossiers Staff | Pôle Illégal</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #05070D;
+    color: #F5F7FF;
+    min-height: 100vh;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 15% 20%, #1597FF22, transparent 35%),
+        radial-gradient(circle at 85% 70%, #E978FF20, transparent 35%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+header {
+    padding: 25px 7%;
+    border-bottom: 1px solid #1597FF55;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #65E6FF;
+    letter-spacing: 2px;
+}
+
+.back {
+    text-decoration: none;
+    color: #F5F7FF;
+    border: 1px solid #B99CFF88;
+    padding: 10px 16px;
+    border-radius: 10px;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 55px 0;
+}
+
+.badge {
+    display: inline-block;
+    color: #E978FF;
+    border: 1px solid #E978FF88;
+    padding: 8px 14px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+    font-size: 13px;
+}
+
+h1 {
+    font-size: clamp(36px, 7vw, 65px);
+    background: linear-gradient(
+        90deg,
+        #1597FF,
+        #65E6FF,
+        #E978FF,
+        #B99CFF
+    );
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 15px;
+}
+
+.intro {
+    color: #b9bfd2;
+    max-width: 760px;
+    line-height: 1.7;
+    margin-bottom: 35px;
+}
+
+.search {
+    width: 100%;
+    padding: 15px 18px;
+    margin-bottom: 25px;
+    background: #0a0e18;
+    border: 1px solid #1597FF55;
+    border-radius: 12px;
+    color: #F5F7FF;
+    outline: none;
+}
+
+.search:focus {
+    border-color: #65E6FF;
+    box-shadow: 0 0 15px #1597FF20;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #0a0e18;
+    border: 1px solid #1597FF44;
+    border-radius: 18px;
+    padding: 25px;
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #65E6FF;
+    box-shadow: 0 0 25px #1597FF18;
+}
+
+.card h2 {
+    color: #65E6FF;
+    margin-bottom: 15px;
+    font-size: 19px;
+}
+
+.card p {
+    color: #b9bfd2;
+    line-height: 1.6;
+    font-size: 14px;
+    margin-bottom: 9px;
+}
+
+.label {
+    color: #B99CFF;
+    font-weight: bold;
+}
+
+.status {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    color: #65E6FF;
+    border: 1px solid #65E6FF55;
+    background: #65E6FF0D;
+    font-size: 12px;
+}
+
+.empty {
+    display: none;
+    text-align: center;
+    padding: 40px;
+    color: #73798c;
+}
+
+.info {
+    margin-top: 40px;
+    padding: 22px;
+    border: 1px solid #B99CFF66;
+    background: #B99CFF0D;
+    border-radius: 15px;
+    color: #c8ccda;
+    line-height: 1.7;
+}
+
+footer {
+    text-align: center;
+    padding: 35px;
+    color: #73798c;
+    border-top: 1px solid #1597FF22;
+    margin-top: 50px;
+}
+
+@media(max-width: 600px) {
+    header {
+        padding: 20px;
+    }
+
+    .logo {
+        font-size: 16px;
+    }
+
+    .container {
+        padding: 40px 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">⚡ PÔLE ILLÉGAL</div>
+    <a href="staff.html" class="back">← Staff</a>
+</header>
+
+<main class="container">
+
+    <span class="badge">📁 DOSSIERS STAFF</span>
+
+    <h1>Dossiers</h1>
+
+    <p class="intro">
+        Espace permettant au staff de retrouver les dossiers
+        internes liés aux organisations et aux différentes situations
+        traitées sur le serveur.
+    </p>
+
+    <input
+        type="text"
+        id="search"
+        class="search"
+        placeholder="🔎 Rechercher un dossier..."
+    >
+
+    <div class="grid" id="dossiers">
+
+        <div class="card">
+            <h2>📂 DOS-001</h2>
+
+            <p>
+                <span class="label">Organisation :</span>
+               

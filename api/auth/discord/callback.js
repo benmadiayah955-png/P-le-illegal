@@ -5,50 +5,57 @@ export default async function handler(req, res) {
     return res.status(400).send("Code Discord manquant.");
   }
 
+  const redirectUri =
+    "https://p-le-illegal.vercel.app/api/auth/discord/callback";
+
   const body = new URLSearchParams({
     grant_type: "authorization_code",
-    code,
-    redirect_uri: process.env.DISCORD_REDIRECT_URI
+    code: code,
+    redirect_uri: redirectUri
   });
 
   const credentials = Buffer.from(
     `${process.env.DISCORD_CLIENT_ID}:${process.env.DISCORD_CLIENT_SECRET}`
   ).toString("base64");
 
-  const tokenResponse = await fetch(
-    "https://discord.com/api/v10/oauth2/token",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        "Authorization": `Basic ${credentials}`
-      },
-      body
-    }
-  );
-
-  const tokenData = await tokenResponse.json();
-
-  if (!tokenResponse.ok) {
-    return res.status(400).json(tokenData);
-  }
-
-  const userResponse = await fetch(
-    "https://discord.com/api/v10/users/@me",
-    {
-      headers: {
-        "Authorization": `Bearer ${tokenData.access_token}`
+  try {
+    const tokenResponse = await fetch(
+      "https://discord.com/api/v10/oauth2/token",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "Authorization": `Basic ${credentials}`
+        },
+        body: body.toString()
       }
+    );
+
+    const tokenData = await tokenResponse.json();
+
+    if (!tokenResponse.ok) {
+      return res.status(400).json({
+        error: "Discord OAuth error",
+        details: tokenData
+      });
     }
-  );
 
-  const user = await userResponse.json();
+    const userResponse = await fetch(
+      "https://discord.com/api/v10/users/@me",
+      {
+        headers: {
+          "Authorization": `Bearer ${tokenData.access_token}`
+        }
+      }
+    );
 
-  if (!userResponse.ok) {
-    return res.status(400).json(user);
-  }
+    const user = await userResponse.json();
 
-  res.status(200).send(
-    `Connexion Discord réussie ! Bienvenue ${user.username}.`
-  );
-}
+    if (!userResponse.ok) {
+      return res.status(400).json({
+        error: "Impossible de récupérer le compte Discord",
+        details: user
+      });
+    }
+
+    res.status(

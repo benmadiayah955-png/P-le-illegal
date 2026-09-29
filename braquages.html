@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Braquages — Pôle Illégal</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top left, rgba(21,151,255,.18), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(233,120,255,.16), transparent 35%),
+        #05070D;
+    color: #F5F7FF;
+}
+
+header {
+    padding: 22px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(101,230,255,.15);
+    background: rgba(5,7,13,.88);
+    backdrop-filter: blur(12px);
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #65E6FF;
+    text-shadow: 0 0 15px rgba(101,230,255,.5);
+}
+
+.back {
+    text-decoration: none;
+    color: #F5F7FF;
+    padding: 10px 18px;
+    border: 1px solid rgba(185,156,255,.4);
+    border-radius: 10px;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 60px auto;
+}
+
+.badge {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 30px;
+    background: rgba(21,151,255,.08);
+    border: 1px solid rgba(21,151,255,.35);
+    color: #65E6FF;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 48px;
+    margin-bottom: 15px;
+    background: linear-gradient(
+        90deg,
+        #1597FF,
+        #65E6FF,
+        #E978FF,
+        #B99CFF
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.description {
+    color: rgba(245,247,255,.65);
+    font-size: 17px;
+    line-height: 1.6;
+    max-width: 760px;
+}
+
+/* FILTRES */
+
+.filters {
+    margin-top: 35px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.filter {
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(101,230,255,.18);
+    background: rgba(255,255,255,.03);
+    color: #F5F7FF;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.filter:hover,
+.filter.active {
+    background: rgba(101,230,255,.1);
+    border-color: #65E6FF;
+    color: #65E6FF;
+}
+
+/* CARTES */
+
+.robberies {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+.card {
+    padding: 27px;
+    border-radius: 20px;
+    background: rgba(255,255,255,.035);
+    border: 1px solid rgba(101,230,255,.15);
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(101,230,255,.5);
+    box-shadow: 0 12px 35px rgba(21,151,255,.12);
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(21,151,255,.1);
+    border: 1px solid rgba(101,230,255,.25);
+    font-size: 24px;
+}
+
+.level {
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+    color: #B99CFF;
+    border: 1px solid rgba(185,156,255,.3);
+    background: rgba(185,156,255,.07);
+}
+
+.card h2 {
+    margin-bottom: 9px;
+}
+
+.card p {
+    color: rgba(245,247,255,.55);
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.rules {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.rule {
+    padding: 11px;
+    border-radius: 10px;
+    background: rgba(255,255,255,.025);
+}
+
+.rule span {
+    display: block;
+    color: rgba(245,247,255,.4);
+    font-size: 10px;
+    margin-bottom: 5px;
+}
+
+.rule strong {
+    font-size: 13px;
+}
+
+.note {
+    margin-top: 30px;
+    padding: 18px;
+    border-radius: 14px;
+    border: 1px solid rgba(233,120,255,.25);
+    background: rgba(233,120,255,.05);
+    color: rgba(245,247,255,.7);
+    line-height: 1.6;
+    font-size: 13px;
+}
+
+footer {
+    text-align: center;
+    padding: 45px 20px;
+    color: rgba(245,247,255,.35);
+    font-size: 13px;
+}
+
+@media(max-width:750px) {
+
+    header {
+        padding: 18px 5%;
+    }
+
+    .logo {
+        font-size: 17px;
+    }
+
+    .container {
+        width: 92%;
+        margin: 40px auto;
+    }
+
+    h1 {
+        font-size: 36px;
+    }
+
+    .robberies {
+        grid-template-columns: 1fr;
+    }
+
+    .rules {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        PÔLE ILLÉGAL
+    </div>
+
+    <a href="activites.html" class="back">
+        ← Activités
+    </a>
+
+</header>
+
+
+<main class="container">
+
+    <div class="badge">
+        💰 BRAQUAGES RP
+    </div>
+
+    <h1>
+        Braquages
+    </h1>
+
+    <p class="description">
+        Retrouvez les différentes catégories de braquages disponibles
+        dans le cadre du RP. Les règles présentées ici sont propres
+        au serveur et doivent être respectées par les participants.
+    </p>
+
+
+    <div class="filters">
+
+        <button class="filter active" onclick="filterCards('all', this)">
+            Tous
+        </button>
+
+        <button class="filter" onclick="filterCards('petit', this)">
+            Petit
+        </button>
+
+        <button class="filter" onclick="filterCards('moyen', this)">
+            Moyen
+        </button>
+
+        <button class="filter" onclick="filterCards('grand', this)">
+            Grand
+        </button>
+
+    </div>
+
+
+    <section class="robberies">
+
+
+        <!-- PETIT -->
+
+        <div class="card robbery petit">
+
+            <div class="card-top">
+
+                <div class="icon">
+                    🏪
+                </div>
+
+                <div class="level">
+                    PETIT
+                </div>
+
+            </div>
+
+            <h2>
+                Commerce
+            </h2>
+
+            <p>
+                Braquage RP d'un petit commerce ou établissement
+                autorisé par le règlement du serveur.
+            </p>
+
+            <div class="rules">
+
+                <div class="rule">
+                    <span>DIFFICULTÉ</span>
+                    <strong>Faible</strong>
+                </div>
+
+                <div class="rule">
+                    <span>JOUEURS</span>
+                    <strong>À définir</strong>
+                </div>
+
+                <div class="rule">
+                    <span>COOLDOWN</span>
+                    <strong>À définir</strong>
+                </div>
+
+                <div class="rule">
+                    <span>POLICE</span>
+                    <strong>Selon règlement</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MOYEN -->
+
+        <div class="card robbery moyen">
+
+            <div class="card-top">
+
+                <div class="icon">
+                    🏦
+                </div>
+
+                <div class="level">
+                    MOYEN
+                </div>
+
+            </div>
+
+            <h2>
+                Établissement
+            </h2>
+
+            <p>
+                Activité RP nécessitant davantage de préparation
+                et une coordination entre les participants.
+            </p>
+
+            <div class="rules">
+
+                <div class="rule">
+                    <span>DIFFICULTÉ</span>
+                    <strong>Moyenne</strong>
+                </div>
+
+                <div class="rule">
+                    <span>JOUEURS</span>
+                    <strong>À définir</strong>
+                </div>
+
+                <div class="rule">
+                    <span>COOLDOWN</span>
+                    <strong>À définir</strong>
+                </div>
+
+                <div class="rule">
+                    <span>POLICE</span>
+                    <strong>Selon règlement</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- GRAND -->
+
+        <div class="card robbery grand">
+
+            <div class="card-top">
+
+                <div class="icon">
+                    💎
+                </div>
+
+                <div class="level">
+                    GRAND
+                </div>
+
+            </div>
+
+            <h2>
+                Opération majeure
+            </h2>
+
+            <p>
+                Opération RP importante nécessitant une organisation
+                préalable et le respect des conditions du serveur.
+            </p>
+
+            <div class="rules">
+
+                <div class="rule">
+                    <span>DIFFICULTÉ</span>
+                    <strong>Élevée</strong>
+                </div>
+
+                <div class="rule">
+                    <span>JOUEURS</span>
+                    <strong>À définir</strong>
+                </div>
+
+                <div class="rule">
+                    <span>COOLDOWN</span>
+                    <strong>À définir</strong>
+                </div>
+
+                <div class="rule">
+                    <span>POLICE</span>
+                    <strong>Selon règlement</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <div class="note">
+        ⚠️ <strong>Rappel RP :</strong>
+        cette page présente uniquement des activités fictives
+        destinées au serveur FiveM. Les règles du serveur et les
+        décisions du staff restent prioritaires.
+    </div>
+
+</main>
+
+
+<footer>
+    PÔLE ILLÉGAL — Activités RP
+</footer>
+
+
+<script>
+
+function filterCards(type, button) {
+
+    const cards = document.querySelectorAll(".robbery");
+    const buttons = document.querySelectorAll(".filter");
+
+    buttons.forEach(function(btn) {
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    cards.forEach(function(card) {
+
+        if (type === "all") {
+            card.style.display = "block";
+        }
+
+        else if (card.classList.contains(type)) {
+            card.style.display = "block";
+        }
+
+        else {
+            card.style.display = "none";
+        }
+
+    });
+}
+
+</script>
+
+</body>
+</html>

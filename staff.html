@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Espace Staff | Pôle Illégal</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #05070D;
+    color: #F5F7FF;
+    min-height: 100vh;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 15% 20%, #1597FF22, transparent 35%),
+        radial-gradient(circle at 85% 70%, #E978FF20, transparent 35%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+header {
+    padding: 25px 7%;
+    border-bottom: 1px solid #1597FF55;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #65E6FF;
+    letter-spacing: 2px;
+}
+
+.back {
+    text-decoration: none;
+    color: #F5F7FF;
+    border: 1px solid #B99CFF88;
+    padding: 10px 16px;
+    border-radius: 10px;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 55px 0;
+}
+
+.badge {
+    display: inline-block;
+    color: #E978FF;
+    border: 1px solid #E978FF88;
+    padding: 8px 14px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+    font-size: 13px;
+}
+
+h1 {
+    font-size: clamp(36px, 7vw, 65px);
+    background: linear-gradient(
+        90deg,
+        #1597FF,
+        #65E6FF,
+        #E978FF,
+        #B99CFF
+    );
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 15px;
+}
+
+.intro {
+    color: #b9bfd2;
+    max-width: 760px;
+    line-height: 1.7;
+    margin-bottom: 45px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+}
+
+.card {
+    background: #0a0e18cc;
+    border: 1px solid #1597FF44;
+    border-radius: 18px;
+    padding: 28px;
+    text-decoration: none;
+    color: inherit;
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    border-color: #65E6FF;
+    box-shadow: 0 0 30px #1597FF20;
+}
+
+.icon {
+    font-size: 38px;
+    margin-bottom: 18px;
+}
+
+.card h2 {
+    color: #65E6FF;
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: #b9bfd2;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.arrow {
+    display: block;
+    margin-top: 20px;
+    color: #E978FF;
+    font-weight: bold;
+}
+
+.info {
+    margin-top: 45px;
+    padding: 25px;
+    border: 1px solid #B99CFF66;
+    background: #B99CFF0D;
+    border-radius: 16px;
+    color: #c8ccda;
+    line-height: 1.7;
+}
+
+footer {
+    text-align: center;
+    padding: 35px;
+    color: #73798c;
+    border-top: 1px solid #1597FF22;
+    margin-top: 50px;
+}
+
+@media(max-width: 600px) {
+    header {
+        padding: 20px;
+    }
+
+    .logo {
+        font-size: 16px;
+    }
+
+    .container {
+        padding: 40px 0;
+   

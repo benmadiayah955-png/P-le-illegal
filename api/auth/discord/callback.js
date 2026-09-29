@@ -1,4 +1,4 @@
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   const { code } = req.query;
 
   if (!code) {
@@ -34,10 +34,7 @@ export default async function handler(req, res) {
     const tokenData = await tokenResponse.json();
 
     if (!tokenResponse.ok) {
-      return res.status(400).json({
-        error: "Discord OAuth error",
-        details: tokenData
-      });
+      return res.status(400).json(tokenData);
     }
 
     const userResponse = await fetch(
@@ -52,10 +49,60 @@ export default async function handler(req, res) {
     const user = await userResponse.json();
 
     if (!userResponse.ok) {
-      return res.status(400).json({
-        error: "Impossible de récupérer le compte Discord",
-        details: user
-      });
+      return res.status(400).json(user);
     }
 
-    res.status(
+    return res.status(200).send(`
+      <!DOCTYPE html>
+      <html lang="fr">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Connexion réussie</title>
+        <style>
+          body {
+            margin: 0;
+            min-height: 100vh;
+            background: #05070D;
+            color: #F5F7FF;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+          }
+
+          .box {
+            padding: 40px;
+            border: 1px solid #1597FF;
+            border-radius: 20px;
+            background: #0f1423;
+          }
+
+          h1 {
+            color: #65E6FF;
+          }
+
+          p {
+            color: #B99CFF;
+          }
+        </style>
+      </head>
+
+      <body>
+        <div class="box">
+          <h1>Connexion réussie 🩷</h1>
+          <p>Bienvenue ${user.username} !</p>
+          <p>Ton compte Discord est bien connecté.</p>
+        </div>
+      </body>
+      </html>
+    `);
+
+  } catch (error) {
+    return res.status(500).json({
+      error: "Erreur serveur",
+      details: error.message
+    });
+  }
+};

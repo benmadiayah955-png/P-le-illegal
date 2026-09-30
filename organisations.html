@@ -618,75 +618,217 @@
 
 <script>
 
-    /*
-     * RECHERCHE DES ORGANISATIONS
-     */
-
     const searchInput =
-        document.getElementById("searchInput");
+        document.getElementById(
+            "searchInput"
+        );
 
-    const cards =
-        document.querySelectorAll(".card");
+
+    const organisationList =
+        document.getElementById(
+            "organisationList"
+        );
+
 
     const noResults =
-        document.getElementById("noResults");
+        document.getElementById(
+            "noResults"
+        );
 
+
+    // Récupération des organisations
+
+    let organisations =
+        JSON.parse(
+            localStorage.getItem(
+                "organisations"
+            )
+        ) || [];
+
+
+    /*
+     * Affichage des organisations
+     */
+
+    function afficherOrganisations(
+        liste
+    ) {
+
+        organisationList.innerHTML = "";
+
+
+        if (liste.length === 0) {
+
+            noResults.style.display =
+                "block";
+
+            return;
+        }
+
+
+        noResults.style.display =
+            "none";
+
+
+        liste.forEach(
+            function(organisation) {
+
+
+                const card =
+                    document.createElement(
+                        "article"
+                    );
+
+
+                card.className =
+                    "card";
+
+
+                let statutTexte =
+                    "ACTIVE";
+
+
+                let statutClasse =
+                    "";
+
+
+                if (
+                    organisation.statut
+                    === "attente"
+                ) {
+
+                    statutTexte =
+                        "EN ATTENTE";
+
+                    statutClasse =
+                        "pending";
+
+                }
+
+
+                if (
+                    organisation.statut
+                    === "suspendue"
+                ) {
+
+                    statutTexte =
+                        "SUSPENDUE";
+
+                    statutClasse =
+                        "pending";
+
+                }
+
+
+                card.innerHTML = `
+
+                    <div class="card-top">
+
+                        <div class="icon">
+                            🏢
+                        </div>
+
+                        <div class="status ${statutClasse}">
+                            ${statutTexte}
+                        </div>
+
+                    </div>
+
+
+                    <h2>
+                        ${organisation.nom}
+                    </h2>
+
+
+                    <p>
+                        ${
+                            organisation.description
+                            || "Aucune description."
+                        }
+                    </p>
+
+
+                    <div class="info">
+
+                        <span class="tag">
+                            ${
+                                organisation.type
+                                || "Organisation"
+                            }
+                        </span>
+
+                        <span class="tag">
+                            ${
+                                organisation.responsable
+                                || "Responsable non renseigné"
+                            }
+                        </span>
+
+                    </div>
+
+
+                    <a
+                        href="dossiers.html?id=${organisation.id}"
+                        class="details"
+                    >
+                        Voir la fiche →
+                    </a>
+
+                `;
+
+
+                organisationList.appendChild(
+                    card
+                );
+
+            }
+        );
+
+    }
+
+
+    /*
+     * Affichage initial
+     */
+
+    afficherOrganisations(
+        organisations
+    );
+
+
+    /*
+     * Recherche
+     */
 
     searchInput.addEventListener(
         "input",
-        function () {
+        function() {
 
-            const search =
+            const recherche =
                 this.value
                     .toLowerCase()
                     .trim();
 
-            let visibleCards = 0;
 
+            const resultat =
+                organisations.filter(
+                    function(organisation) {
 
-            cards.forEach(
-                function (card) {
-
-                    const name =
-                        card
-                            .dataset
-                            .name
-                            .toLowerCase();
-
-
-                    if (
-                        name.includes(search)
-                    ) {
-
-                        card.classList.remove(
-                            "hidden"
-                        );
-
-                        visibleCards++;
-
-                    } else {
-
-                        card.classList.add(
-                            "hidden"
+                        return (
+                            organisation.nom
+                                .toLowerCase()
+                                .includes(
+                                    recherche
+                                )
                         );
 
                     }
+                );
 
-                }
+
+            afficherOrganisations(
+                resultat
             );
-
-
-            if (visibleCards === 0) {
-
-                noResults.style.display =
-                    "block";
-
-            } else {
-
-                noResults.style.display =
-                    "none";
-
-            }
 
         }
     );

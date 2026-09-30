@@ -705,17 +705,8 @@
 
 <script>
 
-
     const form =
-        document.getElementById(
-            "organisationForm"
-        );
-
-
-    const message =
-        document.getElementById(
-            "message"
-        );
+        document.getElementById("organisationForm");
 
 
     form.addEventListener(
@@ -725,46 +716,116 @@
             event.preventDefault();
 
 
-            const nom =
-                document.getElementById(
-                    "nom"
-                ).value.trim();
+            // Récupération des informations
 
+            const nom =
+                document.getElementById("nom")
+                    .value
+                    .trim();
+
+
+            const type =
+                document.getElementById("type")
+                    .value;
+
+
+            const responsable =
+                document.getElementById("responsable")
+                    .value
+                    .trim();
+
+
+            const statut =
+                document.getElementById("statut")
+                    .value;
+
+
+            const description =
+                document.getElementById("description")
+                    .value
+                    .trim();
+
+
+            // Vérification du nom
 
             if (!nom) {
 
-                return;
+                alert(
+                    "Veuillez renseigner le nom de l'organisation."
+                );
 
+                return;
             }
 
 
-            message.style.display =
-                "block";
+            // Récupération des organisations existantes
+
+            let organisations =
+                JSON.parse(
+                    localStorage.getItem(
+                        "organisations"
+                    )
+                ) || [];
 
 
-            message.textContent =
-                "Organisation créée avec succès.";
+            // Création de l'organisation
+
+            const organisation = {
+
+                id:
+                    Date.now(),
+
+                nom:
+                    nom,
+
+                type:
+                    type,
+
+                responsable:
+                    responsable,
+
+                statut:
+                    statut,
+
+                description:
+                    description,
+
+                dateCreation:
+                    new Date().toLocaleDateString(
+                        "fr-FR"
+                    )
+
+            };
 
 
-            /*
-             * Pour le moment, les données
-             * ne sont pas encore enregistrées
-             * dans une base de données.
-             *
-             * Cette partie sera ajoutée
-             * à l'étape suivante.
-             */
+            // Ajout à la liste
 
-
-            setTimeout(
-                function() {
-
-                    window.location.href =
-                        "organisations.html";
-
-                },
-                1200
+            organisations.push(
+                organisation
             );
+
+
+            // Sauvegarde
+
+            localStorage.setItem(
+                "organisations",
+                JSON.stringify(
+                    organisations
+                )
+            );
+
+
+            // Message
+
+            alert(
+                "Organisation créée avec succès !"
+            );
+
+
+            // Retour vers la liste
+
+            window.location.href =
+                "organisations.html";
 
         }
     );

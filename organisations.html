@@ -16,9 +16,18 @@
         body {
             font-family: Arial, sans-serif;
             background:
-                radial-gradient(circle at 15% 10%, rgba(21,151,255,0.16), transparent 30%),
-                radial-gradient(circle at 85% 20%, rgba(233,120,255,0.13), transparent 30%),
+                radial-gradient(
+                    circle at 15% 10%,
+                    rgba(21,151,255,0.16),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(233,120,255,0.13),
+                    transparent 30%
+                ),
                 #05070d;
+
             color: #f5f7ff;
             min-height: 100vh;
         }
@@ -33,6 +42,7 @@
         .navbar {
             max-width: 1100px;
             margin: auto;
+
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -44,8 +54,16 @@
         }
 
         .logo span {
-            background: linear-gradient(90deg,#65e6ff,#1597ff,#e978ff);
+            background:
+                linear-gradient(
+                    90deg,
+                    #65e6ff,
+                    #1597ff,
+                    #e978ff
+                );
+
             -webkit-background-clip: text;
+            background-clip: text;
             color: transparent;
         }
 
@@ -53,6 +71,11 @@
             color: #65e6ff;
             text-decoration: none;
             font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .back:hover {
+            color: white;
         }
 
         main {
@@ -67,12 +90,19 @@
 
         .badge {
             display: inline-block;
+
             padding: 7px 13px;
+
             border-radius: 50px;
+
             border: 1px solid rgba(101,230,255,0.25);
+
             color: #65e6ff;
+
             background: rgba(101,230,255,0.06);
+
             font-size: 12px;
+
             margin-bottom: 18px;
         }
 
@@ -90,131 +120,253 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+
             gap: 15px;
+
             margin-bottom: 25px;
         }
 
         .search {
             flex: 1;
+
             padding: 14px 16px;
+
             border-radius: 12px;
+
             border: 1px solid rgba(255,255,255,0.08);
+
             background: rgba(15,18,27,0.8);
+
             color: white;
+
             outline: none;
+
+            font-size: 14px;
+        }
+
+        .search::placeholder {
+            color: #626978;
         }
 
         .search:focus {
             border-color: rgba(101,230,255,0.5);
+
+            box-shadow:
+                0 0 0 3px rgba(101,230,255,0.05);
         }
 
         .create {
+            display: inline-block;
+
             padding: 14px 18px;
+
             border-radius: 12px;
+
             text-decoration: none;
+
             color: white;
+
             font-weight: bold;
-            background: linear-gradient(90deg,#1597ff,#8d70ff,#e978ff);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #1597ff,
+                    #8d70ff,
+                    #e978ff
+                );
+
             white-space: nowrap;
+
+            transition: 0.2s;
+        }
+
+        .create:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 25px rgba(141,112,255,0.25);
         }
 
         .cards {
             display: grid;
-            grid-template-columns: repeat(2,1fr);
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
             gap: 18px;
         }
 
         .card {
             padding: 24px;
+
             border-radius: 18px;
-            background: rgba(12,15,24,0.82);
-            border: 1px solid rgba(255,255,255,0.07);
+
+            background:
+                rgba(12,15,24,0.82);
+
+            border:
+                1px solid rgba(255,255,255,0.07);
+
             transition: 0.2s;
         }
 
         .card:hover {
             transform: translateY(-3px);
-            border-color: rgba(101,230,255,0.3);
+
+            border-color:
+                rgba(101,230,255,0.3);
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .card.hidden {
+            display: none;
         }
 
         .card-top {
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
+
             margin-bottom: 18px;
         }
 
         .icon {
             width: 45px;
             height: 45px;
+
             border-radius: 13px;
+
             display: flex;
+
             align-items: center;
             justify-content: center;
-            background: linear-gradient(
-                135deg,
-                rgba(101,230,255,0.12),
-                rgba(233,120,255,0.12)
-            );
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(101,230,255,0.12),
+                    rgba(233,120,255,0.12)
+                );
+
             font-size: 20px;
         }
 
         .status {
             padding: 6px 10px;
+
             border-radius: 20px;
-            background: rgba(60,220,150,0.08);
+
+            background:
+                rgba(60,220,150,0.08);
+
             color: #6ee7b7;
+
             font-size: 11px;
+        }
+
+        .status.pending {
+            background:
+                rgba(250,180,60,0.08);
+
+            color: #fbbf24;
         }
 
         .card h2 {
             font-size: 20px;
+
             margin-bottom: 8px;
         }
 
         .card p {
             color: #858b9a;
+
             font-size: 14px;
+
             line-height: 1.6;
         }
 
         .info {
             display: flex;
+
             gap: 8px;
+
             flex-wrap: wrap;
+
             margin-top: 18px;
         }
 
         .tag {
             padding: 6px 9px;
+
             border-radius: 8px;
-            background: rgba(255,255,255,0.04);
+
+            background:
+                rgba(255,255,255,0.04);
+
             color: #9ca3b2;
+
             font-size: 11px;
         }
 
         .details {
-            display: block;
+            display: inline-block;
+
             margin-top: 20px;
+
             color: #65e6ff;
+
             text-decoration: none;
+
             font-size: 13px;
+
             font-weight: bold;
+
+            transition: 0.2s;
+        }
+
+        .details:hover {
+            color: white;
+
+            transform: translateX(3px);
         }
 
         .empty {
             text-align: center;
+
             padding: 50px 20px;
+
             color: #626978;
-            border: 1px dashed rgba(255,255,255,0.1);
+
+            border:
+                1px dashed rgba(255,255,255,0.1);
+
             border-radius: 18px;
+
             margin-top: 20px;
+        }
+
+        .no-results {
+            display: none;
+
+            text-align: center;
+
+            padding: 30px;
+
+            color: #858b9a;
         }
 
         footer {
             text-align: center;
+
             padding: 40px 20px;
+
             color: #505665;
+
             font-size: 12px;
         }
 
@@ -230,15 +382,20 @@
 
             .top {
                 flex-direction: column;
+
                 align-items: stretch;
+            }
+
+            .create {
+                text-align: center;
             }
 
             .cards {
                 grid-template-columns: 1fr;
             }
 
-            .create {
-                text-align: center;
+            .navbar {
+                gap: 15px;
             }
         }
     </style>
@@ -247,21 +404,28 @@
 <body>
 
 <header>
+
     <div class="navbar">
 
         <div class="logo">
             PÔLE <span>ILLÉGAL</span>
         </div>
 
-        <a href="index.html" class="back">
+        <a
+            href="index.html"
+            class="back"
+        >
             ← Accueil
         </a>
 
     </div>
+
 </header>
 
 
 <main>
+
+    <!-- TITRE -->
 
     <section class="title">
 
@@ -269,7 +433,9 @@
             🏢 ORGANISATIONS
         </div>
 
-        <h1>Organisations</h1>
+        <h1>
+            Organisations
+        </h1>
 
         <p>
             Retrouvez ici les organisations enregistrées
@@ -279,28 +445,48 @@
     </section>
 
 
+    <!-- RECHERCHE + CREATION -->
+
     <div class="top">
 
         <input
             type="text"
+            id="searchInput"
             class="search"
             placeholder="Rechercher une organisation..."
+            autocomplete="off"
         >
 
-        <a href="creation.html" class="create">
+        <a
+            href="creation.html"
+            class="create"
+        >
             + Créer une organisation
         </a>
 
     </div>
 
 
-    <section class="cards">
+    <!-- ORGANISATIONS -->
 
-        <article class="card">
+    <section
+        class="cards"
+        id="organisationList"
+    >
+
+
+        <!-- ORGANISATION 1 -->
+
+        <article
+            class="card"
+            data-name="Exemple Organisation"
+        >
 
             <div class="card-top">
 
-                <div class="icon">🏢</div>
+                <div class="icon">
+                    🏢
+                </div>
 
                 <div class="status">
                     ACTIVE
@@ -308,7 +494,11 @@
 
             </div>
 
-            <h2>Exemple Organisation</h2>
+
+            <h2>
+                Exemple Organisation
+            </h2>
+
 
             <p>
                 Fiche de démonstration.
@@ -316,61 +506,192 @@
                 par les données de votre serveur.
             </p>
 
+
             <div class="info">
-                <span class="tag">Organisation</span>
-                <span class="tag">Dossier complet</span>
+
+                <span class="tag">
+                    Organisation
+                </span>
+
+                <span class="tag">
+                    Dossier complet
+                </span>
+
             </div>
 
-            <a href="#" class="details">
+
+            <a
+                href="dossiers.html"
+                class="details"
+            >
                 Voir la fiche →
             </a>
 
         </article>
 
 
-        <article class="card">
+        <!-- ORGANISATION 2 -->
+
+        <article
+            class="card"
+            data-name="Nouvelle organisation"
+        >
 
             <div class="card-top">
 
-                <div class="icon">📁</div>
+                <div class="icon">
+                    📁
+                </div>
 
-                <div class="status">
+                <div class="status pending">
                     EN COURS
                 </div>
 
             </div>
 
-            <h2>Nouvelle organisation</h2>
+
+            <h2>
+                Nouvelle organisation
+            </h2>
+
 
             <p>
                 Exemple de dossier actuellement
                 en cours de création ou de validation.
             </p>
 
+
             <div class="info">
-                <span class="tag">En attente</span>
-                <span class="tag">Staff</span>
+
+                <span class="tag">
+                    En attente
+                </span>
+
+                <span class="tag">
+                    Staff
+                </span>
+
             </div>
 
-            <a href="#" class="details">
+
+            <a
+                href="dossiers.html"
+                class="details"
+            >
                 Voir le dossier →
             </a>
 
         </article>
 
+
     </section>
 
 
+    <!-- AUCUN RESULTAT -->
+
+    <div
+        id="noResults"
+        class="no-results"
+    >
+        Aucune organisation trouvée.
+    </div>
+
+
+    <!-- MESSAGE VIDE -->
+
     <div class="empty">
-        Les prochaines organisations pourront être ajoutées ici.
+
+        Les prochaines organisations pourront
+        être ajoutées ici.
+
     </div>
 
 </main>
 
 
 <footer>
+
     Pôle Illégal — Administration RP
+
 </footer>
+
+
+<script>
+
+    /*
+     * RECHERCHE DES ORGANISATIONS
+     */
+
+    const searchInput =
+        document.getElementById("searchInput");
+
+    const cards =
+        document.querySelectorAll(".card");
+
+    const noResults =
+        document.getElementById("noResults");
+
+
+    searchInput.addEventListener(
+        "input",
+        function () {
+
+            const search =
+                this.value
+                    .toLowerCase()
+                    .trim();
+
+            let visibleCards = 0;
+
+
+            cards.forEach(
+                function (card) {
+
+                    const name =
+                        card
+                            .dataset
+                            .name
+                            .toLowerCase();
+
+
+                    if (
+                        name.includes(search)
+                    ) {
+
+                        card.classList.remove(
+                            "hidden"
+                        );
+
+                        visibleCards++;
+
+                    } else {
+
+                        card.classList.add(
+                            "hidden"
+                        );
+
+                    }
+
+                }
+            );
+
+
+            if (visibleCards === 0) {
+
+                noResults.style.display =
+                    "block";
+
+            } else {
+
+                noResults.style.display =
+                    "none";
+
+            }
+
+        }
+    );
+
+</script>
 
 </body>
 </html>
